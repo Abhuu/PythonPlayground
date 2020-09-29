@@ -1,10 +1,11 @@
-import json
+import json, yaml
 
 
 def main():
     #read_csv_file()
-    read_json_file()
-    read_text_file()
+    #read_json_file()
+    #read_text_file()
+    read_yaml_file()
 
 
 def read_csv_file():
@@ -33,6 +34,17 @@ def read_text_file():
             country_code, country_name = line.split("|")
             print("Country Code: {}\nCountry Name: {}".format(country_code, country_name.strip()))
     print("-------------End of TEXT File----------------")
+
+
+def read_yaml_file():
+    print("-----------Reading from yaml file--------------")
+    with open('countries.yaml', 'r') as reader:
+        country_details = yaml.full_load(reader)
+        #print(country_details)
+        for placeholder, countries in country_details.items():
+            for country_code, country_name in countries.items():
+                print("Country Code: {}\nCountry Name: {}".format(country_code, country_name))
+    print("-------------End of YAML File----------------")
 
 
 if __name__ == '__main__':

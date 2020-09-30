@@ -1,12 +1,32 @@
-import json, yaml
+import json, yaml, sys
 
 
 def main():
-    #read_csv_file()
-    #read_json_file()
-    #read_text_file()
-    read_yaml_file()
+    switch_dict = {
+        "0": exit_app,
+        "1": read_csv_file,
+        "2": read_json_file,
+        "3": read_text_file,
+        "4": read_yaml_file
+    }
 
+    while True:
+        print('''
+            0: "Exit Program"
+            1: "Read CSV File"
+            2: "Read JSON File"
+            3: "Read TEXT File"
+            4: "Read YAML File"
+        ''')
+
+        choice = input("Enter your choice ")
+        if choice in switch_dict:
+            switch_dict.get(choice)()
+
+
+def exit_app():
+    print("Exiting Application")
+    sys.exit()
 
 def read_csv_file():
     print("-----------Reading from countries.csv file--------------")
